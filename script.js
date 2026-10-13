@@ -24,49 +24,33 @@ document.querySelectorAll("[data-current-year]").forEach((element) => {
   element.textContent = String(new Date().getFullYear());
 });
 
-const hero = document.querySelector(".hero-showcase");
+const hero = document.querySelector(".hero-banner");
 
 if (hero) {
-  const visual = hero.querySelector("[data-hero-visual]");
-  const movingWords = ["making", "creating", "crafting"];
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let wordIndex = 0;
-  let pointerFrame = 0;
 
   window.requestAnimationFrame(() => {
     hero.classList.add("is-ready");
   });
 
-  if (!prefersReducedMotion.matches) {
-    window.setInterval(() => {
-      const word = hero.querySelector("[data-hero-word]");
-      if (!word || document.hidden) return;
-      word.classList.add("word-out");
-      window.setTimeout(() => {
-        wordIndex = (wordIndex + 1) % movingWords.length;
-        word.textContent = movingWords[wordIndex];
-        word.classList.remove("word-out");
-      }, 240);
-    }, 3600);
-
-    if (visual && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      visual.classList.add("is-parallax");
-      visual.addEventListener("pointermove", (event) => {
-        if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
-        pointerFrame = window.requestAnimationFrame(() => {
-          const bounds = visual.getBoundingClientRect();
-          const moveX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 14;
-          const moveY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 14;
-          visual.style.setProperty("--move-x", `${moveX.toFixed(1)}px`);
-          visual.style.setProperty("--move-y", `${moveY.toFixed(1)}px`);
-          pointerFrame = 0;
-        });
+  const decoration = hero.querySelector(".hero-banner-decoration");
+  if (!prefersReducedMotion.matches && decoration && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    let pointerFrame = 0;
+    hero.addEventListener("pointermove", (event) => {
+      if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+      pointerFrame = window.requestAnimationFrame(() => {
+        const bounds = hero.getBoundingClientRect();
+        const shiftX = ((event.clientX - bounds.left) / bounds.width - 0.5) * 13;
+        const shiftY = ((event.clientY - bounds.top) / bounds.height - 0.5) * 13;
+        decoration.style.setProperty("--hero-shift-x", `${shiftX.toFixed(1)}px`);
+        decoration.style.setProperty("--hero-shift-y", `${shiftY.toFixed(1)}px`);
+        pointerFrame = 0;
       });
-      visual.addEventListener("pointerleave", () => {
-        if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
-        visual.style.setProperty("--move-x", "0px");
-        visual.style.setProperty("--move-y", "0px");
-      });
-    }
+    });
+    hero.addEventListener("pointerleave", () => {
+      if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+      decoration.style.setProperty("--hero-shift-x", "0px");
+      decoration.style.setProperty("--hero-shift-y", "0px");
+    });
   }
 }
