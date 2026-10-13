@@ -31,6 +31,10 @@ img { display: block; max-width: 100%; }
 .main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); transform-origin: left; }
 .main-nav .nav-shop { padding: 11px 15px; border: 1px solid #e7cbd2; color: var(--rose-deep); font-size: 9px; letter-spacing: .03em; }
 .main-nav .nav-shop:hover { border-color: var(--rose); background: var(--rose); color: white; }
+.header-socials { display: flex; align-items: center; gap: 8px; margin-left: 4px; }
+.header-social { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #ecd6dc; border-radius: 50%; background: #fff8fa; color: var(--rose-deep); transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
+.header-social:hover { border-color: var(--rose); background: var(--rose); color: white; transform: translateY(-2px); }
+.header-social svg { width: 13px; height: 13px; }
 .menu-toggle { display: none; width: 40px; height: 40px; place-items: center; border: 1px solid var(--line); background: transparent; color: var(--ink); }
 .menu-toggle svg { width: 19px; height: 19px; }
 .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--rose-deep); font-size: 9px; font-weight: 600; letter-spacing: .19em; text-transform: uppercase; }
@@ -122,8 +126,11 @@ img { display: block; max-width: 100%; }
 @keyframes hero-card-in { from { opacity: 0; } to { opacity: 1; } }
 .section-space { padding-top: 91px; padding-bottom: 91px; }
 .intro-section { background: white; }
-.intro-inner { max-width: 840px; display: grid; grid-template-columns: 104px 1fr; align-items: center; gap: 38px; }
+.intro-inner { max-width: 1040px; display: grid; grid-template-columns: 104px minmax(0,1.4fr) minmax(220px, 300px); align-items: center; gap: 32px; }
 .intro-mark { width: 96px; height: 96px; display: grid; place-items: center; border: 1px solid #e7c4cd; border-radius: 50%; color: var(--rose); font-family: var(--serif); font-size: 54px; font-style: italic; }
+.intro-copy { max-width: 620px; }
+.intro-visual { overflow: hidden; border-radius: 18px; box-shadow: 0 20px 42px rgba(41, 28, 34, .08); }
+.intro-visual img { width: 100%; height: 240px; object-fit: cover; }
 .intro-inner h2, .section-heading h2, .story-copy h2, .contact-banner h2, .page-hero h1, .about-copy h2, .contact-extra h2 { margin: 12px 0; font-family: var(--serif); font-size: clamp(36px, 4vw, 51px); font-weight: 500; line-height: 1.12; letter-spacing: -.025em; }
 .intro-inner p, .section-heading p, .story-copy p, .page-hero-copy > p, .about-copy p, .contact-banner p, .contact-extra p { color: var(--muted); font-size: 11px; line-height: 1.95; }
 .intro-inner p { max-width: 580px; margin: 0 0 15px; }
@@ -203,8 +210,21 @@ img { display: block; max-width: 100%; }
 .contact-extra h2 { margin: 10px 0 6px; font-size: 38px; }
 .contact-extra p { margin: 0; }
 .social-links { display: flex; flex-wrap: wrap; gap: 10px; }
-.social-links a { min-width: 112px; display: inline-flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 14px; border: 1px solid #e9d8dc; background: white; color: var(--rose-deep); font-size: 9px; }
-.social-links a:hover { border-color: var(--rose); background: var(--rose); color: white; }
+.social-link { min-width: 146px; display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 14px; border: 1px solid #e9d8dc; background: white; color: var(--rose-deep); font-size: 9px; transition: border .2s ease, background .2s ease, color .2s ease, transform .2s ease; }
+.social-link:hover { border-color: var(--rose); background: var(--rose); color: white; transform: translateY(-2px); }
+.social-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: #fff3f7; color: var(--rose-deep); flex-shrink: 0; }
+.social-icon svg { width: 15px; height: 15px; }
+.social-link-text { flex: 1; text-align: left; }
+.social-link-arrow { font-size: 12px; }
+.social-link:hover .social-icon { background: rgba(255,255,255,.18); color: white; }
+.footer-social-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+.footer-social { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color: #f7e8ee; border-radius: 10px; transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
+.footer-social:hover { border-color: rgba(255,255,255,.25); background: var(--rose); color: white; transform: translateY(-2px); }
+.footer-social svg { width: 14px; height: 14px; }
+.map-wrap { width: 100vw; margin-left: calc(50% - 50vw); }
+.map-frame { width: 100%; overflow: hidden; border: 0; background: #f6edf1; box-shadow: none; }
+.map-frame iframe { display: block; width: 100%; min-height: 420px; border: 0; }
+.home-map-section .section-heading, .contact-map-section .section-heading { max-width: 680px; margin: 0 auto 24px; text-align: center; }
 .shipping-note { padding: 32px 0; }
 .shipping-note .container { display: flex; align-items: flex-start; justify-content: center; gap: 14px; }
 .shipping-note .container > span { color: var(--rose); font-size: 17px; }
@@ -268,6 +288,7 @@ img { display: block; max-width: 100%; }
   .section-space { padding-top: 66px; padding-bottom: 66px; }
   .intro-inner { grid-template-columns: 1fr; gap: 21px; }
   .intro-mark { width: 63px; height: 63px; font-size: 39px; }
+  .intro-visual img { height: min(60vw, 260px); }
   .intro-inner h2, .section-heading h2, .story-copy h2, .contact-banner h2, .about-copy h2, .page-hero h1 { font-size: 40px; }
   .section-heading { margin-bottom: 28px; }
   .collection-grid { grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-rows: 158px; gap: 10px; }
@@ -595,7 +616,7 @@ img { display: block; max-width: 100%; }
   animation: announcement-marquee 28s linear infinite;
 }
 .announcement-group {
-  flex: 0 0 100vw;
+  flex: 0 0 70vw;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
